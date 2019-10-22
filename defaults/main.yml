@@ -1,0 +1,3 @@
+---
+dubzland_docker_version: "{{ _dubzland_docker_version }}"
+dubzland_docker_compose_version: "{{ _dubzland_docker_compose_version }}"
