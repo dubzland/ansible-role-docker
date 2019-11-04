@@ -1,0 +1,17 @@
+---
+- name: ensure the docker gpg key is present
+  apt_key:
+    url: "{{ dubzland_docker_repo_key }}"
+    state: present
+  tags:
+    - docker
+    - apt
+
+- name: ensure the docker repository is present
+  apt_repository:
+    repo: "{{ dubzland_docker_repo }}"
+    state: present
+    update_cache: yes
+  tags:
+    - docker
+    - apt

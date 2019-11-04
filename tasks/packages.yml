@@ -1,0 +1,52 @@
+---
+- name: ensure incompatible packages are not installed
+  package:
+    name: "{{ dubzland_docker_obsolete_packages }}"
+    state: absent
+  tags:
+    - docker
+    - apt
+
+- name: ensure required packages are present
+  package:
+    name: "{{ dubzland_docker_prerequisites }}"
+    state: present
+  tags:
+    - docker
+    - apt
+
+- name: pull in os-specific package tasks
+  include_tasks: "packages-Debian.yml"
+  when: ansible_os_family == 'Debian'
+
+- name: set the versioned package names
+  set_fact:
+    dubzland_docker_package_versioned: "{{ dubzland_docker_package_name }}-{{ dubzland_package_version }}"
+    dubzland_docker_cli_package_versioned: "{{ dubzland_docker_cli_package_name }}-{{ dubzland_package_version }}"
+  when: dubzland_docker_version | length > 0
+
+- name: assemble the list of Docker packages
+  set_fact:
+    dubzland_docker_packages:
+      - "{{ dubzland_docker_package_versioned | default(dubzland_docker_package_name) }}"
+      - "{{ dubzland_docker_cli_package_versioned | default(dubzland_docker_cli_package_name) }}"
+
+- name: ensure docker is installed
+  package:
+    name: "{{ dubzland_docker_packages + dubzland_docker_extra_packages }}"
+    state: present
+  notify: enable docker
+  tags:
+    - docker
+    - apt
+
+- name: ensure docker-compose is installed
+  get_url:
+    url: "{{ dubzland_docker_compose_url }}"
+    dest: /usr/local/bin/docker-compose
+    owner: root
+    group: root
+    mode: 0755
+  when: dubzland_docker_install_compose
+  tags:
+    - docker

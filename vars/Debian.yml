@@ -1,0 +1,14 @@
+---
+dubzland_docker_prerequisites:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg2
+  - software-properties-common
+dubzland_docker_repo_key: https://download.docker.com/linux/debian/gpg
+dubzland_docker_repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_lsb['codename'] }} stable"
+dubzland_docker_compose_url: "https://github.com/docker/compose/releases/download/{{ dubzland_docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+dubzland_docker_package_name: docker-ce
+dubzland_docker_cli_package_name: docker-ce-cli
+dubzland_docker_extra_packages:
+  - containerd.io

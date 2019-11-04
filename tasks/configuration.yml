@@ -1,0 +1,10 @@
+---
+- name: ensure users belong to docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  with_items: "{{ dubzland_docker_users }}"
+  tags:
+    - docker
+    - apt

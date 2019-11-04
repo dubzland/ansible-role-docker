@@ -1,9 +1,0 @@
----
-_dubzland_docker_prerequisites:
-  - apt-transport-https
-  - ca-certificates
-  - curl
-  - gnupg2
-  - software-properties-common
-_dubzland_docker_version: 5:19.03.4~3-0~debian-stretch
-_dubzland_docker_compose_version: 1.21.2

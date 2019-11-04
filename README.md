@@ -1,38 +1,60 @@
-Role Name
-=========
+# Dubzland: Docker
+[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/jdubz/dubzland-docker?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/jdubz/dubzland-docker/pipelines)
 
-A brief description of the role goes here.
+Installs and configures Docker.
 
-Requirements
-------------
+## Requirements
+Ansible version 2.0 or higher.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Role Variables
 
-Role Variables
---------------
+Available variables are listed below, along with their default values (see
+    `defaults/main.yml` for more info):
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### dubzland_docker_obsolete_packages
+```yaml
+dubzland_docker_obsolete_packages:
+  - docker
+  - docker-engine
+  - docker.io
+```
 
-Dependencies
-------------
+List of packages that previously installed Docker Engine.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### dubzland_docker_version
 
-Example Playbook
-----------------
+```yaml
+dubzland_docker_version: ""
+```
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This needs to match the versioning of the package manager.  For Debian, this
+will be something like `5:19.03.3~3-0~debian-stretch`.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+### dubzland_docker_users
 
-License
--------
+```yaml
+dubzland_docker_users: []
+```
 
-BSD
+List of users to be added to the `docker` group.
 
-Author Information
-------------------
+## Dependencies
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+None.
+
+## Example Playbook
+
+```yaml
+- hosts: docker
+  become: yes
+  roles:
+  - role: dubzland-docker
+```
+
+## License
+
+MIT
+
+## Author
+
+* [Josh Williams](https://codingprime.com)

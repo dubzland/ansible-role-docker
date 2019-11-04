@@ -1,3 +1,28 @@
 ---
-dubzland_docker_version: "{{ _dubzland_docker_version }}"
-dubzland_docker_compose_version: "{{ _dubzland_docker_compose_version }}"
+#
+# Packages that cannot be installed alongside Docker
+#
+dubzland_docker_obsolete_packages:
+  - docker
+  - docker-engine
+  - docker.io
+
+#
+# Specific version of Docker to install (empty will install latest version)
+#
+dubzland_docker_version: ""
+
+#
+# List of users to add to the `docker` group
+#
+dubzland_docker_users: []
+
+#
+# Whether or not to install docker-compose
+#
+dubzland_docker_install_compose: False
+
+#
+# Version of Docker Compose to install
+#
+dubzland_docker_compose_version: 1.24.1
