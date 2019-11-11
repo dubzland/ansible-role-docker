@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: update the apt cache
+      package:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: add a testing user
+      user:
+        name: dockertest
+        comment: Test Docker User
