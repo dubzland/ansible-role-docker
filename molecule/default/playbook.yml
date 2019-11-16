@@ -4,6 +4,7 @@
   roles:
     - role: dubzland-docker
       vars:
+        dubzland_docker_version: 18.06.2~ce~3-0~debian
         dubzland_docker_users:
           - dockertest
         dubzland_docker_install_compose: True

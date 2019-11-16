@@ -36,8 +36,8 @@
 
 - name: set the versioned package names
   set_fact:
-    dubzland_docker_package_versioned: "{{ dubzland_docker_package_name }}-{{ dubzland_docker_version }}"
-    dubzland_docker_cli_package_versioned: "{{ dubzland_docker_cli_package_name }}-{{ dubzland_docker_version }}"
+    dubzland_docker_package_versioned: "{{ dubzland_docker_package_name }}={{ dubzland_docker_version }}"
+    dubzland_docker_cli_package_versioned: "{{ dubzland_docker_cli_package_name }}={{ dubzland_docker_version }}"
   when: dubzland_docker_version | length > 0
 
 - name: assemble the list of Docker packages
