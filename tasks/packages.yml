@@ -15,14 +15,29 @@
     - docker
     - apt
 
-- name: pull in os-specific package tasks
-  include_tasks: "packages-Debian.yml"
-  when: ansible_os_family == 'Debian'
+- when: ansible_os_family == 'Debian'
+  block:
+    - name: ensure the docker gpg key is present
+      apt_key:
+        url: "{{ dubzland_docker_repo_key }}"
+        state: present
+      tags:
+        - docker
+        - apt
+
+    - name: ensure the docker repository is present
+      apt_repository:
+        repo: "{{ dubzland_docker_repo }}"
+        state: present
+        update_cache: yes
+      tags:
+        - docker
+        - apt
 
 - name: set the versioned package names
   set_fact:
-    dubzland_docker_package_versioned: "{{ dubzland_docker_package_name }}-{{ dubzland_package_version }}"
-    dubzland_docker_cli_package_versioned: "{{ dubzland_docker_cli_package_name }}-{{ dubzland_package_version }}"
+    dubzland_docker_package_versioned: "{{ dubzland_docker_package_name }}-{{ dubzland_docker_version }}"
+    dubzland_docker_cli_package_versioned: "{{ dubzland_docker_cli_package_name }}-{{ dubzland_docker_version }}"
   when: dubzland_docker_version | length > 0
 
 - name: assemble the list of Docker packages
