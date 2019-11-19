@@ -44,7 +44,7 @@
   set_fact:
     dubzland_docker_packages:
       - "{{ dubzland_docker_package_versioned | default(dubzland_docker_package_name) }}"
-      - "{{ dubzland_docker_cli_package_versioned | default(dubzland_docker_cli_package_name) }}"
+      #- "{{ dubzland_docker_cli_package_versioned | default(dubzland_docker_cli_package_name) }}"
 
 - name: ensure docker is installed
   package:

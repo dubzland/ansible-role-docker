@@ -1,5 +1,5 @@
-# Dubzland: Docker
-[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/jdubz/dubzland-docker?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/jdubz/dubzland-docker/pipelines)
+# Ansible Role: Docker
+[![Gitlab pipeline status (self-hosted)](https://git.dubzland.net/dubzland/ansible-role-docker/badges/master/pipeline.svg)](https://git.dubzland.net/dubzland/ansible-role-docker)
 
 Installs and configures Docker.
 
